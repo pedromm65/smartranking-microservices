@@ -9,6 +9,7 @@ async function bootstrap() {
     transport: Transport.RMQ,
     options: {
       urls: ['amqp://user:GtlwqpmsPK00@3.94.160.160:5672/smartranking'],
+      noAck: false,
       queue: 'admin-backend'
     }
   });
