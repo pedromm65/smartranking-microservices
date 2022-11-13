@@ -36,13 +36,23 @@ export class AppService {
     }
 }
 
-async consultarCategoriaPeloId(_id: string): Promise<Categoria> {
+  async consultarCategoriaPeloId(_id: string): Promise<Categoria> {
 
-  try {
-    return await this.categoriaModel.findOne({ _id }).exec();
-  } catch(error) {
-    this.logger.error(`error: ${JSON.stringify(error.message)}`)
-    throw new RpcException(error.message)
+    try {
+      return await this.categoriaModel.findOne({ _id }).exec();
+    } catch(error) {
+      this.logger.error(`error: ${JSON.stringify(error.message)}`)
+      throw new RpcException(error.message)
+    }
   }
-}
+
+  async atualizarCategoria(_id: string, categoria: Categoria): Promise<void> {
+    try {
+      await this.categoriaModel.findOneAndUpdate({ _id }, { $set: categoria }).exec()
+    } catch(error) {
+      this.logger.error(`error: ${JSON.stringify(error.message)}`)
+      throw new RpcException(error.message)
+    }
+  }
+
 }
