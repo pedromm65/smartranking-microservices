@@ -16,6 +16,7 @@ export class JogadoresService {
 
         try {
             const jogadorCriado = new this.jogadoresModel(jogador)
+            jogadorCriado.urlFotoJogador = ""
             return await jogadorCriado.save()
         } catch (error) {
             this.logger.error(`error: ${JSON.stringify(error.message)}`)
@@ -32,24 +33,28 @@ export class JogadoresService {
         }
     }
 
-    async consultarJogadorPeloId(_id: string): Promise<Jogador> {
+    async consultarJogadorPeloId(id: string): Promise<Jogador> {
         try {
-            return await this.jogadoresModel.findOne({ _id }).populate("categoria").exec()
+            return await this.jogadoresModel.findOne({ _id: id }).populate("categoria").exec()
         } catch(error) {
             this.logger.error(`error: ${JSON.stringify(error.message)}`)
             throw new RpcException(error.message)
         }
     }
 
-    async atualizarJogador(_id: string, jogador: Jogador) {
+    async atualizarJogador(_id: string, jogador: Jogador): Promise<void> {
+        console.log(_id)
         try {
-            await this.jogadoresModel.findOneAndUpdate({ _id }, { $set: jogador }).exec()
-            this.logger.log(jogador)
-        } catch(error) {
+            await this.jogadoresModel.findOneAndUpdate({_id}, 
+                {$set: jogador}).exec()
+
+        }
+        catch(error) {
             this.logger.error(`error: ${JSON.stringify(error.message)}`)
             throw new RpcException(error.message)
         }
-    }
+      }
+
 
     async deletarJogador(_id: string) {
         try {

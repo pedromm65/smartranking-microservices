@@ -9,7 +9,7 @@ export class AtualizarJogadorDto {
     // readonly nome: string;
 
     @IsNotEmpty()
-    readonly categoria?: string;
+    categoria?: string;
 
     @IsOptional()
     urlFotoJogador?: string

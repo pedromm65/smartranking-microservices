@@ -36,8 +36,7 @@ export class JogadoresController {
     async uploadArquivo(
         @UploadedFile() file,
         @Param('_id') _id: string) {
-            // this.logger.log(file)
-
+            
             const jogador = await this.clientAdminBackend.send('consultar-jogadores', _id).toPromise()
 
             if (!jogador) {
@@ -45,15 +44,14 @@ export class JogadoresController {
             }
 
             const urlFotoJogador = await this.awsService.uploadArquivo(file, _id)
-
-            const atualizarJogadorDto: AtualizarJogadorDto = {}
+            
+            const atualizarJogadorDto: AtualizarJogadorDto = { }
             atualizarJogadorDto.urlFotoJogador = urlFotoJogador.url
+            
 
             this.clientAdminBackend.emit('atualizar-jogador', { id: _id, jogador: atualizarJogadorDto })
 
-            return this.clientAdminBackend.send('consultar-jogadores', _id)
-
-            
+            return this.clientAdminBackend.send('consultar-jogadores', _id)  
     }
 
     @Get()

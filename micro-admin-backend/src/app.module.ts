@@ -6,7 +6,7 @@ import { JogadoresModule } from './jogadores/jogadores.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://admin:ii1eLNKOnZSB9P2m@cluster0.e0oiaub.mongodb.net/sradmbackend?retryWrites=true&w=majority',
+      'mongodb+srv://admin:ii1eLNKOnZSB9P2m@cluster0.e0oiaub.mongodb.net/sradmbackend?retryWrites=true&w=majority', 
     ),
     CategoriasModule,
     JogadoresModule,

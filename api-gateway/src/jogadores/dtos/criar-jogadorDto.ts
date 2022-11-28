@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CriarJogadorDto {
 
@@ -13,4 +13,8 @@ export class CriarJogadorDto {
 
     @IsNotEmpty()
     readonly categoria: string;
+
+    @IsOptional()
+    urlFotoJogador?: string
+
 }

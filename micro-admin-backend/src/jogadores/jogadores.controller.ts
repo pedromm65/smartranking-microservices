@@ -58,7 +58,7 @@ export class JogadoresController {
         this.logger.log(`data: ${JSON.stringify(data)}`)
 
         try {
-            const _id: string = data._id
+            const _id: string = data.id
             const jogador: Jogador = data.jogador
 
             await this.jogadoresService.atualizarJogador(_id, jogador)
