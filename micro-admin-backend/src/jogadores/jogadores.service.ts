@@ -26,7 +26,7 @@ export class JogadoresService {
 
     async consultarTodosJogadores(): Promise<Array<Jogador>> {
         try {
-            return await this.jogadoresModel.find().populate("categoria").exec()
+            return await this.jogadoresModel.find().exec()
         } catch(error) {
             this.logger.error(`error: ${JSON.stringify(error.message)}`)
             throw new RpcException(error.message)
